@@ -14,8 +14,11 @@ namespace Rec
     {
         static void Main(string[] args)
         {
-            string location = @"D:\Decisions\Recordings\";
-            string fileName = Path.Combine(location, $"{DateTime.Now.ToShortDateString()}-{DateTime.Now.ToString("hhmm")}.wma");
+            string recsFolderPath = @".\Recordings\";
+            if (!Directory.Exists(recsFolderPath))
+                Directory.CreateDirectory(recsFolderPath);
+
+            string fileName = Path.Combine(recsFolderPath, $"{DateTime.Now.ToShortDateString()}-{DateTime.Now.ToString("hhmm")}.wma");
             Console.WriteLine("Starting recording to " + fileName);
             AudioRecorder.RecordToWma(fileName);
         }
